@@ -1,4 +1,4 @@
-FROM ubuntu:14.04
+FROM ubuntu:18.04
 
 MAINTAINER BDLSS, Bodleian Libraries, Oxford University <calvin.butcher@bodleian.ox.ac.uk>
 
@@ -15,12 +15,12 @@ RUN pip2.7 install configobj
 
 # Install cmake 3.2
 WORKDIR /tmp/cmake
-RUN wget http://www.cmake.org/files/v3.2/cmake-3.2.2.tar.gz && tar xf cmake-3.2.2.tar.gz && cd cmake-3.2.2 && ./configure && make && make install
+RUN wget http://www.cmake.org/files/v3.14/cmake-3.14.3.tar.gz && tar xf cmake-3.14.3.tar.gz && cd cmake-3.14.3 && ./configure && make && make install
 
-# Download and compile Grok tag v2.1.1
+# Download and compile Grok tag v2.3.1
 WORKDIR /tmp/openjpeg
-RUN git clone https://github.com/GrokImageCompression/grok.git ./
-RUN git checkout tags/v2.1.1
+RUN git clone https://github.com/epicfaace/grok.git ./
+RUN git checkout 4e394a9cc49b2fecb5f2ed87edc4a59dbe0a64f1
 RUN cmake -DCMAKE_BUILD_TYPE=Release . && make && make install
 
 # install graphic libraries
@@ -59,7 +59,7 @@ RUN echo "/usr/local/lib" >> /etc/ld.so.conf && ldconfig
 RUN mkdir /opt/loris/
 WORKDIR /opt/loris/
 RUN git clone https://github.com/loris-imageserver/loris.git ./
-RUN git checkout tags/2.0.1
+RUN git checkout tags/v2.3.3
 
 RUN useradd -d /var/www/loris -s /sbin/false loris
 
