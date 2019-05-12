@@ -1,5 +1,7 @@
-Docker build of Loris 2 IIIF Image Server with Grok on Ubuntu. This build is configured to take images from the Stanford Daily archives S3 bucket. You can modify the configuration in `loris2.conf`.
+loris-grok-docker
 ===========
+
+Docker build of Loris 2 IIIF Image Server with Grok on Ubuntu. This build is configured to take images from the Stanford Daily archives S3 bucket. You can modify the configuration in `loris2.conf`.
 
 # Setup
 ```
