@@ -71,8 +71,8 @@ RUN cp -R tests/img/* /usr/local/share/images/
 
 # install loris conf and replace webapp.py (with 'opj' mod), run setup.py 
 COPY loris2.conf etc/loris2.conf
-COPY webapp.py loris/webapp.py
-RUN ./setup.py install 
+COPY run.py loris/run.py
+RUN ./setup.py install
 
 # get python validator framework
 RUN pip2.7 install bottle \
@@ -89,4 +89,4 @@ RUN wget --no-check-certificate https://pypi.python.org/packages/source/i/iiif-v
 WORKDIR /opt/loris/loris
 
 EXPOSE 5004
-CMD ["python", "webapp.py"]
+CMD ["python", "run.py"]
