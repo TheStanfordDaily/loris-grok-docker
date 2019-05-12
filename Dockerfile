@@ -57,6 +57,7 @@ RUN echo "/usr/local/lib" >> /etc/ld.so.conf && ldconfig
 
 # Install loris
 RUN mkdir /opt/loris/
+RUN mkdir -p /tmp/loris2/tmp
 WORKDIR /opt/loris/
 RUN git clone https://github.com/loris-imageserver/loris.git ./
 RUN git checkout tags/v2.3.3
