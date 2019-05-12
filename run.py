@@ -10,4 +10,4 @@ if __name__ == '__main__':
 
     app = create_app(config_file_path='/opt/loris/etc/loris2.conf')
 
-    run_simple('0.0.0.0', 5004, app, use_debugger=True, use_reloader=True)
+    run_simple('0.0.0.0', 5004, app, use_debugger=False, use_reloader=False)
