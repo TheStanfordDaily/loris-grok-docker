@@ -17,8 +17,8 @@ RUN wget http://www.cmake.org/files/v3.14/cmake-3.14.3.tar.gz && tar xf cmake-3.
 
 # Download and compile Grok tag v2.3.1
 WORKDIR /tmp/openjpeg
-RUN git clone https://github.com/epicfaace/grok.git ./
-RUN git checkout 4e394a9cc49b2fecb5f2ed87edc4a59dbe0a64f1
+RUN git clone https://github.com/GrokImageCompression/grok.git ./
+RUN git checkout 0f76d791fe789164728facc9b5366d7fc045c08d
 RUN cmake -DCMAKE_BUILD_TYPE=Release . && make && make install
 
 # install graphic libraries
