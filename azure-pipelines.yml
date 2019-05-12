@@ -19,6 +19,7 @@ steps:
   displayName: 'Run a multi-line script'
 
 - task: Docker@2
+  condition: and(succeeded(), eq(variables['Build.SourceBranchName'], 'master'))
   inputs:
     containerRegistry: 'stanforddaily'
     repository: 'stanforddaily-archives-loris'
