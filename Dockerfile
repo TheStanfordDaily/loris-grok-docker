@@ -8,10 +8,8 @@ ENV HOME /root
 RUN apt-get update -y && apt-get install -y wget git gcc g++ unzip make pkg-config
 
 # Install pip and python libs
-RUN apt-get install -y python-dev python-setuptools python-pip build-essential libxml2-dev libxslt1-dev
-RUN pip install --upgrade pip		
-RUN pip2.7 install Werkzeug
-RUN pip2.7 install configobj
+RUN apt-get install -y python3-pip build-essential libxml2-dev libxslt1-dev	
+RUN pip3 install Werkzeug==0.15.2 configobj==5.0.6
 
 # Install cmake 3.2
 WORKDIR /tmp/cmake
@@ -70,24 +68,22 @@ RUN mkdir /usr/local/share/images
 # Load example images
 RUN cp -R tests/img/* /usr/local/share/images/
 
-# install loris conf and replace webapp.py (with 'opj' mod), run setup.py 
+# install loris conf and run.py, then run setup.py
 COPY loris2.conf etc/loris2.conf
 COPY run.py loris/run.py
-RUN ./setup.py install
+RUN python3 setup.py install
 
 # get python validator framework
-RUN pip2.7 install bottle \
-    && pip2.7 install python-magic \
-    && pip2.7 install lxml
+RUN pip3 install bottle==0.12.6 python-magic==0.4.15 lxml==4.3.3
 
 # get IIIF validator
 WORKDIR /tmp
-RUN wget --no-check-certificate https://pypi.python.org/packages/source/i/iiif-validator/iiif-validator-1.0.0.tar.gz \
-	&& tar zxfv iiif-validator-1.0.0.tar.gz \
-	&& rm iiif-validator-1.0.0.tar.gz
+# RUN wget --no-check-certificate https://pypi.python.org/packages/source/i/iiif-validator/iiif-validator-1.0.0.tar.gz \
+# 	&& tar zxfv iiif-validator-1.0.0.tar.gz \
+# 	&& rm iiif-validator-1.0.0.tar.gz
 	
 # run
 WORKDIR /opt/loris/loris
 
 EXPOSE 5004
-CMD ["python", "run.py"]
+CMD ["python3", "run.py"]
